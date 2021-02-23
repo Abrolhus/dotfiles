@@ -58,8 +58,13 @@ if exists('+termguicolors')
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 endif
 let g:gruvbox_invert_selection='0'
+let g:gruvbox_contrast_dark
 colorscheme gruvbox
+" set background=dark
 set background=dark
+let g:gruvbox_colors = { 'dark0_hard': 9 }
+let g:gruvbox_colors = { 'dark4_256': 16 }
+let g:gruvbox_colors = { 'bg0': 9 }
 "Airline
 " let g:airline#extensions#tabline#enabled = 1
 " BarBar
@@ -112,6 +117,9 @@ nnoremap <C-p> :GFiles <CR>
 nnoremap <leader>pg :Rg <CR>
 nnoremap <leader>pf :Files <CR>
 nnoremap <leader>pb :Buffers <CR>
+"maps:buffers (barbar)
+nnoremap <leader>bn :BufferNext <CR>
+nnoremap <leader>bp :BufferPrevious <CR>
 "maps:cht.sh
 "
 "maps:coc
@@ -179,3 +187,5 @@ augroup END
 
 autocmd User CocJumpPlaceholder call CocActionAsync('showSignatureHelp')
 autocmd BufWritePre * :call TrimWhitespace()
+
+" autocmd BufNewFile "" call fzf#install()
