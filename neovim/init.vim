@@ -44,7 +44,7 @@ Plug 'takac/vim-hardtime'
 Plug 'dbeniamine/cheat.sh-vim'
 "Plug 'mhinz/vim-signify'
 Plug 'kyazdani42/nvim-web-devicons'
-Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline'
 Plug 'romgrk/barbar.nvim'
 Plug 'nvim-lua/plenary.nvim'
 Plug 'lewis6991/gitsigns.nvim'
@@ -53,29 +53,31 @@ call plug#end()
 "----------------Theeming ------------------
 "Guvbox
 let g:gruvbox_contrast_dark = 'hard'
-if exists('+termguicolors')
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
+" if exists('+termguicolors')
+    " let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    " let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+" endif
+execute "set t_8f=\e[38;2;%lu;%lu;%lum"
+execute "set t_8b=\e[48;2;%lu;%lu;%lum"
 let g:gruvbox_invert_selection='0'
-let g:gruvbox_contrast_dark
+" let g:gruvbox_contrast_dark
 colorscheme gruvbox
-" set background=dark
 set background=dark
-let g:gruvbox_colors = { 'dark0_hard': 9 }
-let g:gruvbox_colors = { 'dark4_256': 16 }
-let g:gruvbox_colors = { 'bg0': 9 }
+" let g:gruvbox_colors = { 'dark0_hard': 9 }
+"let g:gruvbox_colors = { 'dark4_256': 16 }
+let g:gruvbox_colors = { 'bg0': 0 }
+let g:gruvbox_termcolors=16
 "Airline
 " let g:airline#extensions#tabline#enabled = 1
 " BarBar
-let bufferline = get(g:, 'bufferline', {})
-let bufferline.icon_close_tab = ' '
+" let bufferline = get(g:, 'bufferline', {})
+" let bufferline.icon_close_tab = ' '
 
 "fzf
 let g:fzf_layout = { 'window': { 'width': 0.8, 'height': 0.8 } }
 let $FZF_DEFAULT_OPTS="--reverse --bind 'tab:down,shift-tab:up'"
 " Vim HardTime
-let g:hardtime_default_on = 1
+let g:hardtime_default_on = 0
 "polyglot
 let g:go_highlight_build_constraints = 1
 let g:go_highlight_extra_types = 1

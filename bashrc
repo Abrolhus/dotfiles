@@ -85,13 +85,13 @@ export PKG_CONFIG_PATH
 
 #mpv
 export PATH=$PATH:~/programs/frece-1.0.4-x86_64-unknown-linux-gnu
-alias mpv='mpv --term-playing-msg="\${=filename}, \${=width}, \${=height}" --vo=null --ao=null --frames=1 --quiet --no-cache --no-config'
+# alias mpv='mpv --term-playing-msg="\${=filename}, \${=width}, \${=height}" --vo=null --ao=null --frames=1 --quiet --no-cache --no-config'
 
 alias grafos='cd ~/cs/uni/grafos/trabalho/'
 
 
-#on startup:
-# [[ $TERM != "screen" ]] && exec tmux
-
 # nvim default editor
 export EDITOR="nvim"
+
+#on startup:
+
