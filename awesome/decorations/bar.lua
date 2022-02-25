@@ -27,6 +27,7 @@ local buildBar = function(screen, height)
         filter  = awful.widget.taglist.filter.all,
         buttons = taglist_buttons
     }
+    bar.keyMapWidget = require('decorations.widgets')
 
     -- Create a tasklist widget
     bar.mytasklist = awful.widget.tasklist {
@@ -46,6 +47,7 @@ local buildBar = function(screen, height)
          { -- Right widgets
              layout = wibox.layout.fixed.horizontal,
              bar.mykeyboardlayout,
+             bar.keyMapWidget,
              --applets.network,
              --applets.sound,
              wibox.widget.systray(),

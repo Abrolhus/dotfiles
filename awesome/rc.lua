@@ -118,6 +118,7 @@ awful.rules.rules = rules
 -- {{{ Signals
 require('core.signals')
 -- }}}
+
 --
 -- auto start
 awful.spawn.once(applets.network, nil, nil, "nm-applet")
