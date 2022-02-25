@@ -54,7 +54,7 @@ local rules = {
     properties = { tag = awful.screen.focused().tags[8]}},
     { rule = { class = '[Ss]potify'},
     properties = { tag = awful.screen.focused().tags[9]}},
-    { rule = { class = 'Discord'},
+    { rule = { instance = '[Dd]iscord'},
     properties = { tag = awful.screen.focused().tags[7]}},
     { rule_any = {type = { "normal" }
       }, properties = { titlebars_enabled = false }
