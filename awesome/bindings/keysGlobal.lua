@@ -3,6 +3,30 @@ local gears = require('gears')
 local menubar = require("menubar")
 local hotkeys_popup = require("awful.hotkeys_popup")
 local apps = require('core.apps')
+local naughty = require('naughty')
+
+local spawnTerminal = function()
+    local io = require('io')
+    c = client.focus
+    if c and c.pid and c.class == 'Alacritty' then
+        awful.spawn.easy_async_with_shell(
+            "pgrep -P" .. c.pid,
+            function(out)
+                local childPip = out.gsub(out, "\n", "")
+                    if childPip then
+                        local options = ' --working-directory="/proc/' .. childPip .. '/cwd"'
+                        local cmd = apps.terminal .. options
+                        -- naughty.notify{text = cmd}
+                        awful.spawn(cmd)
+                        return
+                    end
+            end)
+    else
+        awful.spawn(apps.terminal)
+    end
+
+end
+
 globalkeys = gears.table.join(
     awful.key({ modkey,           }, "s",      hotkeys_popup.show_help,
               {description="show help", group="awesome"}),
@@ -48,16 +72,21 @@ globalkeys = gears.table.join(
         {description = "go back", group = "client"}),
 
     -- Standard program
-    awful.key({ modkey,           }, "Return", function () awful.spawn(apps.terminal) end,
+    -- awful.key({ modkey,           }, "Return", function () awful.spawn(apps.terminal) end,
+      --        {description = "open a terminal", group = "launcher"}),
+    awful.key({ modkey,           }, "Return", spawnTerminal,
               {description = "open a terminal", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "e", function () awful.spawn(apps.terminal .. " --working-directory /home/abrolhus/.config/awesome -e nvim rc.lua") end,
               {description = "edit awesomeWM config", group = "launcher"}),
     awful.key({ modkey, "Shift"   }, "w",
         function ()
-            awful.spawn(apps.terminal, { floating  = true,
-                    fullscreen = true,
-                    tag       = mouse.screen.selected_tag,
-                    placement = awful.placement.bottom_right,
+            awful.spawn(apps.terminal,
+                {
+                    -- floating  = true,
+                    --fullscreen = true,
+                    -- tag       = mouse.screen.selected_tag,
+                    tag = mouse.screen.tags[5]
+                    --placement = awful.placement.bottom_right,
                 })
         end,
               {description = "open a floating terminal", group = "launcher"}),
@@ -80,8 +109,20 @@ globalkeys = gears.table.join(
               {description = "increase the number of columns", group = "layout"}),
     awful.key({ modkey, "Control" }, "l",     function () awful.tag.incncol(-1, nil, true)    end,
               {description = "decrease the number of columns", group = "layout"}),
-    awful.key({ modkey,           }, "space", function () awful.layout.inc( 1)                end,
-              {description = "select next", group = "layout"}),
+    awful.key({ modkey,           }, "space",
+        function()
+            local getKeymap = "setxkbmap -print | grep xkb_symbols | awk '{print $4}' | awk -F'+' '{print $2}'"
+                awful.spawn.easy_async_with_shell(getKeymap,
+                        function(out)
+                            local currentKeyMap = out.gsub(out, "\n", "")
+                            if currentKeyMap == 'us' then
+                                awful.spawn.with_shell('setxkbmap ' .. 'br')
+                            else
+                                awful.spawn.with_shell('setxkbmap ' .. 'us')
+                            end
+                        end)
+        end,
+              {description = "Change keyMap", group = "awesome"}),
     awful.key({ modkey, "Shift"   }, "space", function () awful.layout.inc(-1)                end,
               {description = "select previous", group = "layout"}),
 
