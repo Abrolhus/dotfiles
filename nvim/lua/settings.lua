@@ -5,13 +5,14 @@
 ---- SETTINGS ----
 local opt = vim.opt
 opt.guicursor = ""
+opt.mouse = "a"
 opt.relativenumber = true 
 opt.number = true
 opt.hidden = true
 opt.errorbells = false
 opt.wrap = false
-opt.showmode = false
-opt.updatetime=50
+opt.showmode = true
+opt.updatetime=500
 opt.scrolloff = 8
 --- undo
 opt.swapfile = false
@@ -34,7 +35,3 @@ opt.termguicolors = true
 opt.cmdheight = 2
 opt.signcolumn = "yes"
 opt.shortmess = "filnxtToOFc" -- set shortmess+=c
-    
-	
-    
-
