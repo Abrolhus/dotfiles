@@ -11,22 +11,24 @@ cmp.setup {
         ["<tab>"] = cmp.config.disable, -- no tab
         ["<C-space>"] = cmp.mapping.complete(),
     },
+    snippet = {
+      expand = function(args)
+        require'luasnip'.lsp_expand(args.body)
+      end
+    },
     sources = {
-        -- source options: 
+        -- source options:
         --     keyword_length
-        --     priority 
+        --     priority
         --     max_item_count
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
         { name = "path" },
         -- { name = "luasnip" },
         { name = "buffer", keyword_length = 5 },
-
-
     },
     experimental = {
         native_menu = false,
         ghost_text = true,
     }
-
 }
