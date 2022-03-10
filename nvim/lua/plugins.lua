@@ -19,4 +19,14 @@ function()
     }
     use 'sainnhe/gruvbox-material'
     use 'kyazdani42/nvim-web-devicons'
+
+    -- completion
+    use 'hrsh7th/nvim-cmp'
+    use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-path'
+    use 'hrsh7th/cmp-nvim-lua'
+    use 'hrsh7th/cmp-nvim-lsp'
+    -- use 'saadparwaiz1/cmp_luasnip'
+    -- use 'hrsh7th/cmp-cmdline'
+
 end)

@@ -2,8 +2,10 @@ local utils = require('utils')
 local nmap = utils.nmap
 local imap = utils.imap
 local lspConfig = require('lspconfig')
+local capabilities = require('cmp_nvim_lsp') .update_capabilities(vim.lsp.protocol.make_client_capabilities())
 -- c/c++ --
 lspConfig.clangd.setup{
+    capabilities = capabilities,
     cmd = {
       "clangd",
       "--background-index",
@@ -20,6 +22,7 @@ local runtime_path = vim.split(package.path, ';')
 table.insert(runtime_path, "lua/?.lua")
 table.insert(runtime_path, "lua/?/init.lua")
 lspConfig.sumneko_lua.setup {
+    capabilities = capabilities,
   settings = {
     Lua = {
       runtime = {
@@ -45,7 +48,11 @@ lspConfig.sumneko_lua.setup {
   on_attach = function() print("hello lua-language-server!") end
 }
 -- javascript/typescript --
-lspConfig.tsserver.setup{ }
+lspConfig.tsserver.setup{
+    capabilities = capabilities,
+}
 -- python --
-lspConfig.jedi_language_server.setup{}
+lspConfig.jedi_language_server.setup{
+    capabilities = capabilities,
+}
 
