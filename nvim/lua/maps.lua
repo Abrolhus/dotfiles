@@ -1,7 +1,14 @@
 local utils = require('utils')
 nmap = utils.nmap
 imap = utils.imap
-
+local safeLspCall = function(func)
+    return function()
+        if vim.lsp.buf_is_attached then
+            func()
+            print("hello safe lsp call")
+        end
+    end
+end
 --- window --- 
 -- window movement
 nmap("<leader>h", function() vim.cmd "wincmd h" end)
@@ -24,6 +31,16 @@ nmap("<leader><CR>", function() vim.cmd "source ~/.config/nvim/init.lua"; print(
 nmap("<leader>ei", function() vim.cmd "edit ~/.config/nvim/init.lua" end)
 imap("<C-c>", function() print("heyy") end)
 vim.keymap.set({'i', 'n', 'c', 'x'}, "<C-c>", "<esc>") 
+-- lsp --
+local slc = safeLspCall
+nmap("gh", slc(vim.lsp.buf.hover))
+nmap("gd", slc(vim.lsp.buf.definition))
+nmap("gi", slc(vim.lsp.buf.implementation))
+nmap("gD", slc(vim.lsp.buf.declaration))
+nmap("gT", slc(vim.lsp.buf.type_definition))
+nmap("<leader>rr", slc(vim.lsp.buf.rename))
+nmap("<leader>dn", slc(vim.diagnostic.goto_next))
+nmap("<leader>dp", slc(vim.diagnostic.goto_prev))
 -- telescope -- 
 local biTelescope = require('telescope.builtin')
 nmap("<leader>pf", biTelescope.find_files)
@@ -32,12 +49,3 @@ nmap("<leader>pp", function() biTelescope.find_files({no_ignore = true}) end)
 nmap("<leader>pg", biTelescope.live_grep)
 nmap("<leader>pb", biTelescope.buffers)
 nmap("<leader>ph", biTelescope.help_tags)
--- lsp --
-nmap("gh", vim.lsp.buf.hover or "<nop>", { buffer=0 })
-nmap("gd", vim.lsp.buf.definition or "<nop>", { buffer=0 })
-nmap("gi", vim.lsp.buf.implementation or "<nop>", { buffer=0 })
-nmap("gD", vim.lsp.buf.declaration or "<nop>", { buffer=0 })
-nmap("gT", vim.lsp.buf.type_definition or "<nop>", { buffer=0 })
-nmap("<leader>rr", vim.lsp.buf.rename or "<nop>", { buffer=0 })
-nmap("<leader>dn", vim.diagnostic.goto_next or "<nop>", { buffer=0 })
-nmap("<leader>dp", vim.diagnostic.goto_prev or "<nop>", { buffer=0 })
