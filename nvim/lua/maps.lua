@@ -49,3 +49,6 @@ nmap("<leader>pp", function() biTelescope.find_files({no_ignore = true}) end)
 nmap("<leader>pg", biTelescope.live_grep)
 nmap("<leader>pb", biTelescope.buffers)
 nmap("<leader>ph", biTelescope.help_tags)
+-- file tree
+nmap("<leader>fo", function() vim.cmd "NvimTreeRefresh"; vim.cmd "NvimTreeToggle" end)
+nmap("<leader>ft", function() vim.cmd "NvimTreeFocus" end)
