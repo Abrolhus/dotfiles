@@ -6,6 +6,7 @@ require 'maps'
 require 'lsp'
 require 'qol'
 require 'completion'
+require 'plugins.treesitter'
 require 'plugins.comment'
 require 'plugins.nvimTree'
 --- colorscheme ---
