@@ -35,5 +35,11 @@ opt.termguicolors = true
 opt.cmdheight = 2
 opt.signcolumn = "yes"
 opt.shortmess = "filnxtToOFc" -- set shortmess+=c
+-- opt.list = true
+-- opt.listchars = { eol = "⏎"}
+
 -- completion --
 opt.completeopt= { "menu", "menuone", "noselect" }
+
+-- cursor hold (Plugin)
+vim.g.cursorhold_updatetime = opt.updatetime:get()
