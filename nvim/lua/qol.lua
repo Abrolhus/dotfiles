@@ -5,20 +5,36 @@ vim.api.nvim_create_autocmd('TextYankPost', { group = 'highlight_yank', pattern 
 
 -- highlight-symbol-on-cursor-hold
 vim.api.nvim_create_augroup('cursor_hold_word', { clear = true })
-vim.api.nvim_create_autocmd( 'CursorHold', 
-    { 
-        group = 'cursor_hold_word', 
-        pattern = '*', 
+vim.api.nvim_create_autocmd( 'CursorHold',
+    {
+        group = 'cursor_hold_word',
+        pattern = '*',
         --buffer = 0,
-        callback = vim.lsp.buf.document_highlight 
+        callback = vim.lsp.buf.document_highlight
     }
 )
-vim.api.nvim_create_autocmd( 'CursorMoved', 
-    { 
-        group = 'cursor_hold_word', 
+vim.api.nvim_create_autocmd( 'CursorMoved',
+    {
+        group = 'cursor_hold_word',
         --buffer = 0,
-        pattern = '*', 
+        pattern = '*',
         callback = vim.lsp.buf.clear_references
     }
 )
+--[[ vim.api.nvim_create_augroup('highlightCurrentLine', { clear = true })
+vim.api.nvim_create_autocmd( 'CursorHold',
+    {
+        group = 'highlightCurrentLine',
+        pattern = '*',
+        callback = function() vim.opt.cursorline = true end
+    }
+)
+vim.api.nvim_create_autocmd( 'CursorMoved',
+    {
+        group = 'highlightCurrentLine',
+        --buffer = 0,
+        pattern = '*',
+        callback = function() vim.opt.cursorline = false end
+    }
+) ]]
 
