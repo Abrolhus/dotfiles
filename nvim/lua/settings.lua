@@ -35,6 +35,8 @@ opt.termguicolors = true
 opt.cmdheight = 2
 opt.signcolumn = "yes"
 opt.shortmess = "filnxtToOFc" -- set shortmess+=c
+opt.cursorline = true
+opt.cursorlineopt = "both"
 -- opt.list = true
 -- opt.listchars = { eol = "⏎"}
 
