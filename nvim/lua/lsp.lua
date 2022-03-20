@@ -55,4 +55,6 @@ lspConfig.tsserver.setup{
 lspConfig.jedi_language_server.setup{
     capabilities = capabilities,
 }
+-- markdown -- 
+lspConfig.zeta_note.setup{}
 

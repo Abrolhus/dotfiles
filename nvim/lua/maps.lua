@@ -1,15 +1,15 @@
 local utils = require('utils')
-nmap = utils.nmap
-imap = utils.imap
+local nmap = utils.nmap
+local imap = utils.imap
+local vmap = utils.vmap
 local safeLspCall = function(func)
     return function()
         if vim.lsp.buf_is_attached then
             func()
-            print("hello safe lsp call")
         end
     end
 end
---- window --- 
+--- window ---
 -- window movement
 nmap("<leader>h", function() vim.cmd "wincmd h" end)
 nmap("<leader>j", function() vim.cmd "wincmd j" end)
@@ -26,6 +26,10 @@ nmap("<leader>-" , function() vim.cmd ":vertical resize -5" end)
 ---sane-keybindings---
 nmap("Y", "y$")
 nmap("q", "<nop>")
+nmap("<leader>y", '"+y')
+vmap("<leader>y", '"+y')
+nmap("<leader>Y", '"+Y')
+vmap("<leader>Y", '"+Y')
 -- meta
 nmap("<leader><CR>", function() vim.cmd "source ~/.config/nvim/init.lua"; print("mas") end)
 nmap("<leader>ei", function() vim.cmd "edit ~/.config/nvim/init.lua" end)
@@ -41,7 +45,8 @@ nmap("gT", slc(vim.lsp.buf.type_definition))
 nmap("<leader>rr", slc(vim.lsp.buf.rename))
 nmap("<leader>dn", slc(vim.diagnostic.goto_next))
 nmap("<leader>dp", slc(vim.diagnostic.goto_prev))
--- telescope -- 
+nmap("<leader>dh", slc(vim.diagnostic.open_float)) -- diagnostic help
+-- telescope --
 local biTelescope = require('telescope.builtin')
 nmap("<leader>pf", biTelescope.find_files)
 nmap("<leader>pc", biTelescope.current_buffer_fuzzy_find)

@@ -38,3 +38,17 @@ vim.api.nvim_create_autocmd( 'CursorMoved',
     }
 ) ]]
 
+--[[ vim.api.nvim_create_augroup('diagnosticOnHold', { clear = true })
+vim.api.nvim_create_autocmd( 'CursorHold',
+    {
+        group = 'diagnosticOnHold',
+        pattern = '*',
+        --buffer = 0,
+        callback = vim.diagnostic.open_float
+    }
+)
+]]
+
+
+
+
