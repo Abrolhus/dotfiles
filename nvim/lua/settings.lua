@@ -6,7 +6,7 @@
 local opt = vim.opt
 opt.guicursor = ""
 opt.mouse = "a"
-opt.relativenumber = true 
+opt.relativenumber = true
 opt.number = true
 opt.hidden = true
 opt.errorbells = false
@@ -14,13 +14,16 @@ opt.wrap = false
 opt.showmode = true
 opt.updatetime=500
 opt.scrolloff = 8
+-- nvim 0.7...
+opt.laststatus = 3
+
 --- undo
 opt.swapfile = false
 opt.backup = false
 opt.undodir = "~/.config/nvim/undodir"
 opt.undofile = true
 --- tabs
-opt.tabstop = 4 
+opt.tabstop = 4
 opt.softtabstop = 4
 opt.shiftwidth = 4
 opt.expandtab = true
