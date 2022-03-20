@@ -14,13 +14,14 @@ opt.wrap = false
 opt.showmode = true
 opt.updatetime=500
 opt.scrolloff = 8
+opt.clipboard = opt.clipboard + "unnamedplus"
 -- nvim 0.7...
 opt.laststatus = 3
 
 --- undo
 opt.swapfile = false
 opt.backup = false
-opt.undodir = "~/.config/nvim/undodir"
+opt.undodir = "/home/abrolhus/.config/nvim/undodir"
 opt.undofile = true
 --- tabs
 opt.tabstop = 4

@@ -17,7 +17,7 @@ function(use)
     -- decorations --
     use 'sainnhe/gruvbox-material'
     use 'kyazdani42/nvim-web-devicons'
-    use {'j-hui/fidget.nvim', config = require'fidget'.setup{}} -- eye candy, shows lsp loading
+    use {'j-hui/fidget.nvim', config = require'fidget'.setup{window = {blend = 0}}} -- eye candy, shows lsp loading
     use {
         'lewis6991/gitsigns.nvim',
         requires = {
@@ -35,6 +35,7 @@ function(use)
     use { 'L3MON4D3/LuaSnip' }
     use 'hrsh7th/nvim-cmp'
     use 'hrsh7th/cmp-buffer'
+    use 'hrsh7th/cmp-nvim-lsp-signature-help'
     use 'hrsh7th/cmp-path'
     use 'hrsh7th/cmp-nvim-lua'
     use 'hrsh7th/cmp-nvim-lsp'

@@ -6,6 +6,10 @@ return {
     imap = function(...) 
         local lhs, rhs, opts = ...; 
         vim.keymap.set('i', lhs, rhs, opts) 
+    end,
+    vmap = function(...) 
+        local lhs, rhs, opts = ...; 
+        vim.keymap.set('v', lhs, rhs, opts) 
     end
 }
 
