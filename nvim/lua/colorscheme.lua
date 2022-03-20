@@ -38,10 +38,11 @@ vim.g.gruvbox_material_palette = gruvboxPalette
 vim.g.gruvbox_material_diagnostic_line_highlight = 1
 vim.g.gruvbox_material_diagnostic_virtual_text = 'colored'
 -- vim.g.gruvbox_material_disable_italic_comment = 1 -- teste
-vim.g.gruvbox_material_enable_bold = 1
--- vim.g.gruvbox_material_transparent_background = 1
-vim.g.gruvbox_material_enable_italic = 1
 vim.g.gruvbox_material_sign_column_background = 'none'
+-- transparency
+vim.g.gruvbox_material_transparent_background = 1
+vim.g.gruvbox_material_enable_italic = 1
+vim.g.gruvbox_material_enable_bold = 0
 
 local function gruvBoxOnAttach()
     vim.cmd("highlight CursorLineNr guifg=" .. gruvboxPalette.grey2[1] .. " gui=bold")
@@ -51,3 +52,5 @@ return {changeHighlights = gruvBoxOnAttach}
 -- vim.g.gruvbox_material_better_performance = 1 -- testing
 -- *hl-LineNr*
 -- LineNr
+-- |LspReferenceText| |LspReferenceRead| |LspReferenceWrite|
+
