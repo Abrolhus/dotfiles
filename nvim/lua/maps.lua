@@ -33,22 +33,19 @@ vmap("<leader>Y", '"+Y')
 -- meta
 nmap("<leader><CR>", function() vim.cmd "source ~/.config/nvim/init.lua"; print("mas") end)
 nmap("<leader>ei", function() vim.cmd "edit ~/.config/nvim/init.lua" end)
+imap("<C-c>", function() print("heyy") end)
 vim.keymap.set({'i', 'n', 'c', 'x'}, "<C-c>", "<esc>") 
-vim.keymap.set({'i', 'n', 'c', 'x'}, "<C-[>", "<esc>") 
 -- lsp --
 local slc = safeLspCall
 nmap("gh", slc(vim.lsp.buf.hover))
--- nmap("K", slc(vim.lsp.buf.hover))
 nmap("gd", slc(vim.lsp.buf.definition))
 nmap("gi", slc(vim.lsp.buf.implementation))
 nmap("gD", slc(vim.lsp.buf.declaration))
 nmap("gT", slc(vim.lsp.buf.type_definition))
-nmap("gr", slc(vim.lsp.buf.references))
 nmap("<leader>rr", slc(vim.lsp.buf.rename))
-nmap("<leader>dn", slc(function() vim.diagnostic.goto_next{float = false} end))
-nmap("<leader>dp", slc(function() vim.diagnostic.goto_prev{float = false} end))
+nmap("<leader>dn", slc(vim.diagnostic.goto_next))
+nmap("<leader>dp", slc(vim.diagnostic.goto_prev))
 nmap("<leader>dh", slc(vim.diagnostic.open_float)) -- diagnostic help
-nmap("<leader>df", slc(function() vim.lsp.buf.code_action({only="quickfix"}) end)) -- diagnostic help
 -- telescope --
 local biTelescope = require('telescope.builtin')
 nmap("<leader>pf", biTelescope.find_files)
