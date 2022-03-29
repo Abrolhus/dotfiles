@@ -12,7 +12,7 @@ opt.hidden = true
 opt.errorbells = false
 opt.wrap = false
 opt.showmode = true
-opt.updatetime=500
+opt.updatetime=700
 opt.scrolloff = 8
 opt.clipboard = opt.clipboard + "unnamedplus"
 -- nvim 0.7...
