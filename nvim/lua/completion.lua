@@ -1,4 +1,5 @@
 local cmp = require("cmp")
+local luasnip = require("luasnip")
 cmp.setup {
     mapping = {
         ["<C-b>"] = cmp.mapping.scroll_docs(-4),
@@ -10,7 +11,23 @@ cmp.setup {
         },
         ["<tab>"] = cmp.config.disable, -- no tab
         ["<C-space>"] = cmp.mapping.complete(),
+        ["<C-k>"] = cmp.mapping(function(fallback)
+            if luasnip.expand_or_jumpable() then
+                luasnip.expand_or_jump()
+            else
+                fallback()
+            end
+        end, { "i", "s" }),
+
+    ["<C-j>"] = cmp.mapping(function(fallback)
+      if luasnip.jumpable(-1) then
+        luasnip.jump(-1)
+      else
+        fallback()
+      end
+    end, { "i", "s" }),
     },
+
     snippet = {
       expand = function(args)
         require'luasnip'.lsp_expand(args.body)
