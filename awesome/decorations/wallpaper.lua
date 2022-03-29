@@ -9,7 +9,10 @@ wallpaper.set_wallpaper = function(s)
         if type(wallpaper) == "function" then
             wallpaper = wallpaper(s)
         end
-        gears.wallpaper.maximized(wallpaper, s, true)
+        -- gears.wallpaper.maximized(wallpaper, s, true)
+        -- gears.wallpaper.centered(wallpaper, s)
+        -- gears.wallpaper.tiled(wallpaper, s)
+        gears.wallpaper.fit(wallpaper, s)
     end
 end
 return wallpaper;

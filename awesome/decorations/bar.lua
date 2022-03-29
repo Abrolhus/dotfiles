@@ -1,6 +1,7 @@
 local awful = require('awful')
 local gears = require("gears")
 local wibox = require("wibox")
+local batteryWidget = require("decorations.widgets.batteryWidget")
 -- local tagList = require('decorations.tagList')
 -- local taskList = require('decorations.taskList')
 -- each screen has a bar. Each bar has a bunch of widgets and stuff
@@ -33,7 +34,57 @@ local buildBar = function(screen, height)
     bar.mytasklist = awful.widget.tasklist {
         screen  = screen,
         filter  = awful.widget.tasklist.filter.currenttags,
-        buttons = tasklist_buttons
+        buttons = tasklist_buttons,
+        style    = {
+                shape_border_width = 1,
+                shape_border_color = '#777777',
+                shape  = gears.shape.rectangle,
+            },
+        layout   = {
+            spacing = 10,
+            spacing_widget = {
+                {
+                    forced_width = 5,
+                    shape        = gears.shape.rectangle,
+                    widget       = wibox.widget.separator,
+                    visible = false
+                },
+                valign = 'center',
+                halign = 'center',
+                widget = wibox.container.place,
+            },
+            layout  = (function()
+                local layout = wibox.layout.fixed.horizontal()
+                layout.forced_width = 10
+                return layout
+            end)()
+        },
+    -- Notice that there is *NO* wibox.wibox prefix, it is a template,
+    -- not a widget instance.
+        widget_template = {
+            {
+                {
+                    {
+                        {
+                            id     = 'icon_role',
+                            widget = wibox.widget.imagebox,
+                        },
+                        margins = 2,
+                        widget  = wibox.container.margin,
+                    },
+                    {
+                        id     = 'text_role',
+                        widget = wibox.widget.textbox,
+                    },
+                    layout = wibox.layout.fixed.horizontal,
+                },
+                left  = 10,
+                right = 10,
+                widget = wibox.container.margin
+            },
+            id     = 'background_role',
+            widget = wibox.container.background,
+        },
     }
     bar.bar:setup {
          layout = wibox.layout.align.horizontal,
@@ -51,6 +102,7 @@ local buildBar = function(screen, height)
              --applets.network,
              --applets.sound,
              wibox.widget.systray(),
+             batteryWidget(),
              bar.mytextclock,
              bar.mylayoutbox,
          },

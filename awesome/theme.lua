@@ -22,17 +22,17 @@ theme.font          = "noto sans 12"
 -- theme.bg_minimize   = "#444444"
 -- theme.bg_systray    = theme.bg_normal
 theme.bg_normal     = "#152334"
+theme.bg_bar        = ""
 theme.bg_focus      = "#8094A9"
 theme.bg_urgent     = "#C671A6"
 theme.bg_minimize   = "#7E779C"
-theme.bg_systray    = theme.bg_normal
-
+theme.bg_systray    = "#152334"
 theme.fg_normal     = "#aaaaaa"
 theme.fg_focus      = "#ffffff"
 theme.fg_urgent     = "#ffffff"
 theme.fg_minimize   = "#ffffff"
 
-theme.useless_gap   = dpi(4)
+theme.useless_gap   = dpi(5)
 theme.border_width  = dpi(1)
 theme.border_normal = "#000000"
 theme.border_focus  = "#535d6c"
@@ -109,7 +109,7 @@ theme.titlebar_maximized_button_normal_active = themes_path.."default/titlebar/m
 theme.titlebar_maximized_button_focus_active  = themes_path.."default/titlebar/maximized_focus_active.png"
 
 -- theme.wallpaper = themes_path.."default/background.png"
-theme.wallpaper = "~/Pictures/wallpapers/so-peaceful.jpg"
+theme.wallpaper = "~/.config/awesome/currentWallpaper.jpg"
 
 -- You can use your own layout icons like this:
 theme.layout_fairh = themes_path.."default/layouts/fairhw.png"
