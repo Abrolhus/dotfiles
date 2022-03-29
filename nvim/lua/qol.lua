@@ -10,7 +10,11 @@ vim.api.nvim_create_autocmd( 'CursorHold',
         group = 'cursor_hold_word',
         pattern = '*',
         --buffer = 0,
-        callback = vim.lsp.buf.document_highlight
+        callback = function()
+            if vim.lsp.buf_is_attached() then
+                vim.lsp.buf.document_highlight()
+            end
+        end
     }
 )
 vim.api.nvim_create_autocmd( 'CursorMoved',
@@ -38,16 +42,15 @@ vim.api.nvim_create_autocmd( 'CursorMoved',
     }
 ) ]]
 
---[[ vim.api.nvim_create_augroup('diagnosticOnHold', { clear = true })
+vim.api.nvim_create_augroup('diagnosticOnHold', { clear = true })
 vim.api.nvim_create_autocmd( 'CursorHold',
     {
         group = 'diagnosticOnHold',
         pattern = '*',
-        --buffer = 0,
-        callback = vim.diagnostic.open_float
+        --buffer = 0, 
+        callback = function() vim.diagnostic.open_float({scope="cursor"}) end
     }
 )
-]]
 
 
 
