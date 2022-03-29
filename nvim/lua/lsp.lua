@@ -57,4 +57,3 @@ lspConfig.jedi_language_server.setup{
 }
 -- markdown -- 
 lspConfig.zeta_note.setup{}
-
