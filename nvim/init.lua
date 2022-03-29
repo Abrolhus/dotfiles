@@ -9,9 +9,12 @@ require 'completion'
 require 'plugins.treesitter'
 require 'plugins.comment'
 require 'plugins.nvimTree'
-LuaStatusline = require 'statusBar'
+require 'plugins.toggleTerm'
+require 'diagnostics'
+LuaStatusline = require 'statusBar' -- TODO: make this LuaStatusLine local
 local colorscheme = require 'colorscheme'
 --- colorscheme ---
 vim.cmd "colorscheme gruvbox-material"
 colorscheme.changeHighlights()
+LuaStatusline.setHighlights()
 vim.opt.statusline = "%!luaeval('LuaStatusline.get()')" -- gambiarra
